@@ -17,16 +17,18 @@ import dash_html_components as html
 
 from dash.dependencies import Input, Output, State
 
-# Authentication
-USERNAME_PASSWORD_PAIRS = [['username','password']]
+# Authentication token
+token = os.getenv('STREAMHOSTER')
+
+# Credentials
+username_secret = os.getenv('STREAMHOSTER_USER')
+password_secret = os.getenv('STREAMHOSTER_PASS')
+USERNAME_PASSWORD_PAIRS = [[username_secret,password_secret]]
 
 # Initialize app
 app = dash.Dash()
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
-
-# Authentication variable
-token = os.getenv('STREAMHOSTER')
 
 # Function returns a pandas data frame of Streamhoster data acquired through API 
 def __StreamhosterDataFetcher__(start_time, end_time, media_key=None):
@@ -130,7 +132,7 @@ def update_figure_views(n_clicks,media_key,daterangestart,daterangeend):
     daterangeend_input = dt.strptime(daterangeend,'%Y-%m-%d')
     daterangeend_string = dt.strftime(daterangeend_input,'%Y%m%d')
 
-    # call StreamhosterDataFetcher for udpated data
+    # call StreamhosterDataFetcher for updated data
     new_data = __StreamhosterDataFetcher__(daterangestart_string, daterangeend_string)
 
     # filter to media key wildcard search
