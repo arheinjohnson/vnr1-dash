@@ -6,7 +6,6 @@ from datetime import datetime as dt
 from datetime import timedelta
 
 # plotly imports
-import plotly.offline as pyo
 import plotly.graph_objs as go
 
 # dash imports
@@ -93,7 +92,8 @@ app.layout = html.Div([
             figure={
                     'data':data_views,
                     'layout':{'height':600, 
-                                'width':1000, 
+                                'width':1000,
+                                'title':'Media Views',
                                 'yaxis':{'title':'Media Views'}, 
                                 'margin':{'b':180}    
                     }
@@ -107,7 +107,8 @@ app.layout = html.Div([
         dcc.Graph(id='uniques',
             figure={'data':data_uniques,
                     'layout':{'height':600, 
-                                'width':1000, 
+                                'width':1000,
+                                'title':'Unique Viewers', 
                                 'yaxis':{'title':'Unique viewers'}, 
                                 'margin':{'b':180}}
                     }, style={'width':'50%',
