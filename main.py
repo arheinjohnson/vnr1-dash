@@ -95,6 +95,7 @@ app.layout = html.Div([
                     'layout':{'height':600, 
                                 'width':1000,
                                 'title':'Media Views',
+                                'yaxis':{'title':'Count of Media Views'},
                                 'margin':{'b':200}    
                     }
             }
@@ -108,14 +109,14 @@ app.layout = html.Div([
             figure={'data':data_uniques,
                     'layout':{'height':600, 
                                 'width':1000,
-                                'title':'Unique Viewers', 
+                                'title':'Unique Viewers',
+                                'yaxis':{'title':'Count of Unique Viewers'},
                                 'margin':{'b':200}}
                     }, style={'width':'50%',
                                 'overflowX':'scroll'})
         ])
 
 ])
-
 
 # callback functions to update graphs when inputs are changed
 
@@ -150,7 +151,8 @@ def update_figure_views(n_clicks,media_key,daterangestart,daterangeend):
 
     layout = {'height':600, 
                 'width':1000,
-                'title':'Media Views', 
+                'title':'Media Views',
+                'yaxis':{'title':'Count of Media Views'},
                 'margin':{'b':200}
             }
 
@@ -184,6 +186,7 @@ def update_figure_unique_viewers(n_clicks,media_key,daterangestart,daterangeend)
 
     layout = {'height':600, 
                 'width':1000, 
+                'yaxis':{'title':'Count of Unique Viewers'},
                 'title':'Unique Viewers',
                 'margin':{'b':200}
     }
