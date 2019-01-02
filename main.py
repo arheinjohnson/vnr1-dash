@@ -6,6 +6,7 @@ from datetime import datetime as dt
 from datetime import timedelta
 
 # plotly imports
+import plotly.offline as plo
 import plotly.graph_objs as go
 
 # dash imports
@@ -94,8 +95,7 @@ app.layout = html.Div([
                     'layout':{'height':600, 
                                 'width':1000,
                                 'title':'Media Views',
-                                'yaxis':{'title':'Media Views'}, 
-                                'margin':{'b':180}    
+                                'margin':{'b':200}    
                     }
             }
             , style={'width':'50%'
@@ -109,8 +109,7 @@ app.layout = html.Div([
                     'layout':{'height':600, 
                                 'width':1000,
                                 'title':'Unique Viewers', 
-                                'yaxis':{'title':'Unique viewers'}, 
-                                'margin':{'b':180}}
+                                'margin':{'b':200}}
                     }, style={'width':'50%',
                                 'overflowX':'scroll'})
         ])
@@ -118,7 +117,7 @@ app.layout = html.Div([
 ])
 
 
-# callback functions to dynamically update graphs when inputs are changed
+# callback functions to update graphs when inputs are changed
 
 @app.callback(Output('views','figure'),
             [Input('submit-button','n_clicks')],
@@ -149,7 +148,11 @@ def update_figure_views(n_clicks,media_key,daterangestart,daterangeend):
             y = filtered_df['views']
     ))
 
-    layout = {'height':600, 'width':1000, 'yaxis':{'title':'Media Views'}, 'margin':{'b':160}}
+    layout = {'height':600, 
+                'width':1000,
+                'title':'Media Views', 
+                'margin':{'b':200}
+            }
 
     return {'data': traces,'layout':layout}
 
@@ -181,8 +184,8 @@ def update_figure_unique_viewers(n_clicks,media_key,daterangestart,daterangeend)
 
     layout = {'height':600, 
                 'width':1000, 
-                'yaxis':{'title':'Unique Viewers'}, 
-                'margin':{'b':160}
+                'title':'Unique Viewers',
+                'margin':{'b':200}
     }
 
     return {'data': traces, 'layout': layout}
