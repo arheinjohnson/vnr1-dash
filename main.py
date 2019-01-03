@@ -45,7 +45,7 @@ def __StreamhosterDataFetcher__(start_time, end_time, media_key=None):
     return df.sort_values(by=['views'], ascending=False)
 
 today = dt.today().date()
-tenDaysAgo = dt.today().date() - timedelta(days=10)
+tenDaysAgo = dt.today().date() - timedelta(days=1)
 
 df = __StreamhosterDataFetcher__(tenDaysAgo.strftime('%Y%m%d'),today.strftime('%Y%m%d'))
 
@@ -111,7 +111,13 @@ app.layout = html.Div([
                                 'width':1000,
                                 'title':'Unique Viewers',
                                 'yaxis':{'title':'Count of Unique Viewers'},
-                                'margin':{'b':200}}
+                                'margin':{'b':200},
+                                'images':dict(source='VNR1.jpg',         
+                                                xref="paper", yref="paper",
+                                                x=1, y=1.05,
+                                                sizex=0.2, sizey=0.2,
+                                                xanchor="right", yanchor="bottom")
+                    }
                     }, style={'width':'50%',
                                 'overflowX':'scroll'})
         ])
