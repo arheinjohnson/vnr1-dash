@@ -61,7 +61,7 @@ data_uniques = [go.Bar(
 
 app.layout = html.Div([
 
-        html.H1('Streamhoster Dashboard'),
+        html.H1('VNR1 Dashboard'),
 
         html.Div([
         html.Label('Media Key: '),        
