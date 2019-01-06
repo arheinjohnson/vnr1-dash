@@ -26,7 +26,7 @@ password_secret = os.getenv('STREAMHOSTER_PASS')
 USERNAME_PASSWORD_PAIRS = [[username_secret,password_secret]]
 
 # Initialize app
-app = dash.Dash()
+app = dash.Dash(__name__, static_folder='static')
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
 
