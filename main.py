@@ -131,7 +131,7 @@ app.layout = html.Div([
                 data=df.to_dict("rows")
             )
             
-        ])
+        ], style={'marginBottom': 50, 'marginTop':50})
 
 ])
 
