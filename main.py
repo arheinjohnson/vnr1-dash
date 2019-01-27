@@ -137,6 +137,31 @@ app.layout = html.Div([
 
 # callback functions to update graphs when inputs are changed
 
+@app.callback(Output('table','data'),
+            [Input('submit-button','n_clicks')],
+            [State('mediakeyinput','value'),
+                State('daterangeinput','start_date'),
+                State('daterangeinput','end_date')])
+def update_table_data(n_clicks,media_key,daterangestart,daterangeend):
+    # strip date from datetime and convert to string format
+    daterangestart_input = dt.strptime(daterangestart,'%Y-%m-%d')
+    daterangestart_string = dt.strftime(daterangestart_input,'%Y%m%d')
+
+    daterangeend_input = dt.strptime(daterangeend,'%Y-%m-%d')
+    daterangeend_string = dt.strftime(daterangeend_input,'%Y%m%d')    
+
+    # call StreamhosterDataFetcher for updated data
+    new_data = __StreamhosterDataFetcher__(daterangestart_string, daterangeend_string)
+
+    # filter to media key wildcard search
+    if media_key == '':
+        filtered_df = new_data
+    else:
+        filtered_df = new_data[new_data['mediakey'].str.contains(media_key)]
+
+    return filtered_df
+
+
 @app.callback(Output('views','figure'),
             [Input('submit-button','n_clicks')],
             [State('mediakeyinput','value'),
