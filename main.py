@@ -159,7 +159,7 @@ def update_table_data(n_clicks,media_key,daterangestart,daterangeend):
     else:
         filtered_df = new_data[new_data['mediakey'].str.contains(media_key)]
 
-    return filtered_df
+    return filtered_df.to_dict("rows")
 
 
 @app.callback(Output('views','figure'),
