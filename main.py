@@ -38,7 +38,7 @@ def __StreamhosterDataFetcher__(start_time, end_time, media_key=None):
     payload = {'startTime': start_time, 'endTime': end_time, 'segmentNames': 'm'}
     r = requests.get(URL, params=payload, headers={'Authorization': 'Basic %s' %  TOKEN})
     data = r.json()
-    df = pd.DataFrame({'mediakey': [], 'views': [], 'uniques': [], 'dataTransferGB': []})
+    df = pd.DataFrame({'mediakey': [], 'views': [], 'uniques': [], 'datatransferGB': []})
     
     for i in data['services'][0]['m']:
         df = df.append({'mediakey': i['key'], 'views': i['totals']['views'], 'uniques': i['totals']['uniques'], 'datatransferGB': i['totals']['dataTransferGB']}, ignore_index=True)
