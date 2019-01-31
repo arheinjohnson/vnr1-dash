@@ -41,8 +41,9 @@ def __StreamhosterDataFetcher__(start_time, end_time, media_key=None):
     df = pd.DataFrame({'mediakey': [], 'views': [], 'uniques': [], 'datatransferGB': []})
     
     for x in data['services']:
-        for i in x['m']:
-            df = df.append({'mediakey': i['key'], 'views': i['totals']['views'], 'uniques': i['totals']['uniques'], 'datatransferGB': i['totals']['dataTransferGB']}, ignore_index=True)
+        if "vnr" in x['serviceName']:
+            for i in x['m']:
+                df = df.append({'mediakey': i['key'], 'views': i['totals']['views'], 'uniques': i['totals']['uniques'], 'datatransferGB': i['totals']['dataTransferGB']}, ignore_index=True)
 
     return df.sort_values(by=['views'], ascending=False)
 
