@@ -48,9 +48,9 @@ def __StreamhosterDataFetcher__(start_time, end_time, media_key=None):
     return df.sort_values(by=['views'], ascending=False)
 
 today = dt.today().date()
-yesterday = dt.today().date() - timedelta(days=1)
+tenDaysAgo = dt.today().date() - timedelta(days=1)
 
-df = __StreamhosterDataFetcher__(yesterday.strftime('%Y%m%d'),today.strftime('%Y%m%d'))
+df = __StreamhosterDataFetcher__(tenDaysAgo.strftime('%Y%m%d'),today.strftime('%Y%m%d'))
 
 data_views = [go.Bar(
             x=df['mediakey'].tolist(),
